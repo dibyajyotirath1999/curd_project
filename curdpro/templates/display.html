@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Document</title>
+</head>
+<body style="background-color:violet;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class=" col-md-12">
+                <h1 class="text-center" style="text-decoration: underline; color: white; text-shadow: 0px 0px 10px  black;" >NTH STUDENTS MARKS</h1>
+                <a href="{% url 'adddata' %}" class="btn btn-primary" style="float:right; margin-bottom: 10px;"> add data</a>
+                {% if students %}
+                    <table class="table table-bordered text-center ">
+                        <thead class="bg-success text-white">
+                            <tr>
+                                <th> first name</th>
+                                <th>last name</th>
+                                <th>course course</th>
+                                <th> fee</th>
+                                <th>assignment1</th>
+                                <th>assignment2</th>
+                                <th>assignment3</th>
+                                <th>assignment4</th>
+                                <th>Total</th>
+                                <th>Average</th>
+                                
+
+                                <th>Actions</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody class="bg-dark text-white">
+                            {% for i in students %}
+                            <tr>
+                                <td>{{i.fname}}</td>
+                                <td>{{i.lname}}</td>
+                                <td>{{i.course}}</td>
+                                <td>{{i.fee}}</td>
+                                <td>{{i.assignment1}}</td>
+                                <td>{{i.assignment2}}</td>
+                                <td>{{i.assignment3}}</td>
+                                <td>{{i.assignment4}}</td>
+                                <td>{{i.total}}</td>
+                                <td>{{i.avg}}</td>
+                            
+        
+                                <td>
+                                    <a href="/update_data/{{i.id}}" class="btn btn-outline-success" >Update</a>
+                                    <a href="/delete_data/{{i.id}}" class="btn btn-outline-danger" onclick="return confirm('Do you want to delete?')">Delete</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    
+                {% else %}
+                <h3> no data found</h3>
+                {% endif %}
+
+
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>
